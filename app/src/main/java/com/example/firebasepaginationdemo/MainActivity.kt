@@ -2,13 +2,9 @@ package com.example.firebasepaginationdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -24,9 +20,8 @@ class MainActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val query: Query = db.collection("news").orderBy("headline")
         val config = PagedList.Config.Builder()
-            .setInitialLoadSizeHint(7)
-
-            .setPageSize(2)
+            .setInitialLoadSizeHint(50)
+            .setPageSize(7)
             .build()
 
         val option = FirestorePagingOptions.Builder<NewsModel>()
